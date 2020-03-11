@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Register And Login Template</h1>
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}            
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h4>Registration</h4>
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    <label>First Name</label>
+                    <input type="text" name="form_first_name" id="" class= form-control>
+                    <label>Last Name</label>
+                    <input type="text" name="form_last_name" id="" class= form-control>
+                    <label>Email</label>
+                    <input type="email" name="form_email" id="" class= form-control>
+                    <label>Password</label>
+                    <input type="password" name="form_password" id="" class= form-control>
+                    <label>Confirm Password</label>
+                    <input type="password" name="form_confirm_password" id="" class= form-control>
+                    <br>
+                    <input type="submit" value="Register" class="btn btn-primary">
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <h4>New User Log In</h4>
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <label>Email</label>
+                    <input type="email" name="form_email" id="" class= form-control>
+                    <label>Password</label>
+                    <input type="password" name="form_password" id="" class= form-control>
+                    <br>
+                    <input type="submit" value="Log In" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

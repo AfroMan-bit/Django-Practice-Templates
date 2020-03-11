@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}	
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+
+    <img src="{% static 'img/download.jpg' %}" />
+    <h1>The Time Right Now!!!</h1>
+    <h3>Welcome Back {{ request.session.name }}</h3>
+    <h2>{{ time }}</h2>
+    <ul>
+    {% for number in numbers %}
+        {% if number|divisibleby:3 %}
+            <li style="color: red";>{{ number }}</li>
+        {% else %}
+            <li>{{ number }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <a href="/home">Home</a>
+    <pre>{{ time }}</pre>
+
+</body>
+</html>

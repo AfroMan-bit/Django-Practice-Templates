@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Here Is the Html file located in the created template folder of Project Apps</h1>
+    <h3>You have been here this many times: {{timesVisited}}</h3>
+    <p>{{myarray}}</p>
+    {% for value in myarray %}
+        {% if value == "dog" %}
+        <h1>Found dog!</h1>
+        
+        {% else %}
+        <p>{{value}}</p>
+        {% endif %}
+    
+    {% endfor %}
+    <p>{{somevalue}}</p>
+</body>
+</html> 

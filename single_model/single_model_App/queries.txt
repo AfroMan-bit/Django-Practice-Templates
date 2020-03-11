@@ -1,0 +1,46 @@
+Query: Create 3 new users
+Format---> ClassName.objects.create(field1="value for field1", field2="value for field2", etc.)
+
+(Adding 1st user since the id number is 1 which is always hidden) User.objects.create(firstname= "Olanrewaju", lastname= "Oyewo", email= "olanrewaju@yahoo.com", age= "29")
+(Adding 2nd user since the id number is 2 which is always hidden) user2 = User.objects.create(firstname= "Olawale", lastname= "Oyewo", email= "olawale@yahoo.com", age="21")
+(Adding 3rd user) user3 = User.objects.create(firstname= "Oyelola", lastname= "Oyewo", email= "oyelola@yahoo.com", age="26")
+
+
+Query: Retrieve all the users
+Format---> ClassName.objects.all()
+
+User.objects.all()
+
+Query: Retrieve the last user
+Format---> ClassName.objects.last()
+
+User.objects.last()
+
+Query: Retrieve the first user
+Format---> ClassName.objects.first()
+
+User.objects.first()
+
+Query: Change the user with id=3 so their last name is Pancakes.
+Format---> c = ClassName.objects.get(id=3) then c.field_name = "some new value for field_name" then c.save()
+
+c = User.objects.get(id=3)
+c.lastname = "pancakes"
+c.save()
+
+Query: Delete the user with id=2 from the database.
+Format---> c = ClassName.objects.get(id=2) then c.delete()
+
+c = User.objects.get(id=2)
+>>> c.delete()
+
+
+Query: Get all the users, sorted by their first name.
+Format---> ClassName.objects.all().order_by("field_name")
+
+User.objects.all().order_by("firstname")
+
+Query: Get all the users, sorted by their first name in descending order.
+Format---> ClassName.objects.all().order_by("-field_name") - orders by field provided, descending
+
+User.objects.all().order_by("-firstname")

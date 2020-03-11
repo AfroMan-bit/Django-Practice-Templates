@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Add a New Show</h1>
+            <h6><a href="/shows">Go Back</a></h6>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="/shows/create" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type= "text" name="form_title" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Network</label>
+                        <input type= "text" name="form_network" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type= "date" name="form_release_date" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="form_desc" id="" cols="30" rows="5" placeholder="Please share comment" class="form-control"></textarea>
+                    </div>
+                    <!-- to add a button as a link for a (POST) request. The POST request for this form above will be a dictionary with the name attribute as the key to the dictionary.(name= "keyname") to be reference in the views.py file" -->
+                    <input type="submit" value= "Create" class="btn btn-primary" required>
+                </form>
+            </div>
+        </div> 
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Author Information Template</h1>
+        </div>
+        <p>{{ author.first_name }} {{ author.last_name }}</p>
+        <p>ID: {{ author.id }}</p>
+        <h4>Notes:</h4>
+        <textarea name="notes" id="" cols="30" rows="10" placeholder="{{ author.notes }}" class="form-control"></textarea>
+        <h4>Books:</h4>
+        <ul>
+        {% for book in author.books.all %}
+            <li>{{ book.title }}</li>
+        {% endfor %}
+        </ul>
+        <p>Select a book to add to the list of books that {{ author.first_name }} {{ author.last_name }} will have:</p>
+        <form action="/bookToauthor/{{book.id}}" method="post">
+            {% csrf_token %}
+            <select name="bookid" id= "">
+                <option value="">select a book</option>
+                {% for book in allbooks %}
+                <option value="{{ book.id }}">{{ book.title }}</option>
+            {% endfor %}
+            </select>
+            <!-- to put the submit button on the same line as the dropdown option -->
+            <input type="submit" value="Add Books" class="btn btn-success">
+            <!-- OR  to put the submit buttom at the below the drop down option  -->
+            <!-- <p></p><input type="submit" value="Add Books" class="btn btn-success"><p></p> -->
+        </form>
+        <h6><a href="/author">Back</a></h6>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Book Information Template</h1>
+        </div>
+        <p>{{ book.title }}</p>
+        <p>ID: {{ book.id }}</p>
+        <h4>Description:</h4>
+        <textarea name="desc" id="" cols="30" rows="10" placeholder="{{ book.desc }}" class="form-control"></textarea>
+        <br><br>
+        <h4>Authors:</h4>
+        <ul>
+        {% for author in book.authors.all %}
+            <li>{{ author.first_name }} {{ author.last_name }}</li>
+        {% endfor %}
+        </ul>
+        <p>Select an author to add to the list of authors that {{ book.title }} will have:</p>
+        <form action="/authorTobook/{{author.id}}" method="post">
+            {% csrf_token %}
+            <select name="authorid" id= "">
+                <option value="">select an author</option>
+                {% for author in allauthors %}
+                <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Add Authors" class="btn btn-success">
+        </form>
+        <h6><a href="/">Back</a></h6>
+    </div>
+</body>
+</html>

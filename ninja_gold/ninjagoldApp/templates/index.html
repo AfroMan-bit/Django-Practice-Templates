@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: inline-block;
+            border: 1px black solid;
+        }
+
+        #activity {
+            width: 60%;
+            min-height: 200px;
+            border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ninja Gold</h1>
+    <p>Your Gold: {{request.session.total}}</p>
+    <p><a href="/reset"><button>Play Again</button></a></p>
+    <div class = "box">
+        <h3>Farm</h3>
+        <p>(Earns 10-20 gold)</p>
+        <form action="/processMoney" method="post">
+                {% csrf_token %}
+            <input type="hidden" name="location" value = "farm">
+            <input type="submit" value="Find gold!">
+        </form>
+    </div>
+    <div class = "box">
+        <h3>Cave</h3>
+        <p>(Earns 5-10 gold)</p>
+        <form action="/processMoney" method="post">
+                {% csrf_token %}
+            <input type="hidden" name="location" value = "cave">
+            <input type="submit" value="Find gold!">
+        </form>
+    </div>
+    <div class = "box">
+        <h3>House</h3>
+        <p>(Earns 2-5 gold)</p>
+        <form action="/processMoney" method="post">
+                {% csrf_token %}
+            <input type="hidden" name="location" value = "house">
+            <input type="submit" value="Find gold!">
+        </form>
+    </div>
+    <div class = "box">
+        <h3>Casino</h3>
+        <p>(Earns/takes 0-50 gold)</p>
+        <form action="/processMoney" method="post">
+                {% csrf_token %}
+            <input type="hidden" name="location" value = "casino">
+            <input type="submit" value="Find gold!">
+        </form>
+    </div>
+    <p>Activities</p>
+    <div id= "activity">
+        <ul>
+            {% for request.session.activities %}
+            {% if 'earned' in activity %}
+            <li style= "color: green;">{{activity}}</li>
+            {% else %}
+            <li style= "color: red;">{{activity}}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

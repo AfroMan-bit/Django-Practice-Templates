@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Edit Show {{ show.id }}</h1>
+            <h6><a href="/shows">Go Back</a></h6>
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="/shows/{{show.id}}/update" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type= "text" name="title" id="" placeholder="{{ show.title }}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Network</label>
+                        <input type= "text" name="network" id="" placeholder="{{ show.network }}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Release Date</label>
+                        <input type= "date" name="releasedate" id="" placeholder="{{ show.release_date }}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="desc" id="" cols="30" rows="5" placeholder="{{ show.desc }}" class="form-control"></textarea>
+                    </div>
+                    <!-- button tag to submit a form that also serves as a link to send a POST request. -->
+                    <a href="/shows/{{ show.id }}" class="btn btn-primary" role="button">Update</a>
+                    <br><br>
+                    <h6><a href="/shows">Go to Show</a></h6>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

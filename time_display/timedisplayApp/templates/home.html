@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}	
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <img src="{% static 'img/download.jpg' %}" />
+    <h1>Hello this is the Home Page {{ htmlname }}</h1>
+    <a href="/">Back</a> 
+    <form action="/process" method="post">
+        {% csrf_token %}
+        <p>Name: <input type="text" name="name"> </p>
+        <p>Age: <input type="number" name="age"> </p> 
+        <input type="submit"/> 
+        <input type="hidden" name="example" value="this is hidden"/>
+    </form>
+    {% for name in namelist %}
+    <p>Hello this is the Home Page {{ namelist }}<p>
+    {% endfor %}
+</body>
+</html> 

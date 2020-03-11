@@ -1,0 +1,77 @@
+Query: Create 3 new dojos
+    >Dojo.objects.create(name= "Alpha", city= "Columbia", state= "MD")
+    >dojo2 = Dojo.objects.create(name= "Betta", city= "Washington", state= "DC")
+    >dojo3 = Dojo.objects.create(name= "Gamma", city= "Oshkosh", state= "WI")
+
+Query: Delete the 3 dojos you just created
+    >c = Dojo.objects.get(id=1) then
+	>c.delete()
+    >c = Dojo.objects.get(id=2) then
+	>c.delete()
+    >c = Dojo.objects.get(id=3) then
+	>c.delete()
+
+Query: Create 3 more dojos (the 3 dojo clsses deleted previously can never be forgotten by the database hense "dojo4" insteaad of "dojo1" againD)
+    >dojo4 = Dojo.objects.create(name= "Alpha", city= "Columbia", state= "MD")
+    >dojo5 = Dojo.objects.create(name= "Betta", city= "Washington", state= "DC")
+    >dojo6 = Dojo.objects.create(name= "Gamma", city= "Oshkosh", state= "WI")
+
+Query: Create 3 ninjas that belong to the first dojo (we tell the shell what dojo1 is then assign a ninja1 to it, same goes for all other ninja2, ninja3 etc.)
+    >dojo1 = Dojo.objects.get(id=1) then
+    >dojo1 then
+    >ninja1 = Ninja.objects.create(first_name= "Ben", last_name= "Oyewo", dojo = dojo1)
+    >ninja2 = Ninja.objects.create(first_name= "Naa", last_name= "McGruder", dojo = dojo1)
+    >ninja3 = Ninja.objects.create(first_name= "Wale", last_name= "Jacob", dojo = dojo1)
+
+Query: Create 3 ninjas that belong to the second dojo.
+    >dojo2 = Dojo.objects.get(id=1) then
+    >dojo2 then
+    >ninja4 = Ninja.objects.create(first_name= "Ben", last_name= "Oyewo", dojo = dojo2)
+    >ninja5 = Ninja.objects.create(first_name= "Lola", last_name= "Winifred", dojo = dojo2)
+    >ninja6 = Ninja.objects.create(first_name= "Toyin", last_name= "Agoro", dojo = dojo2)
+
+Query: Create 3 ninjas that belong to the third dojo.
+    >dojo3 = Dojo.objects.get(id=1) then
+    dojo3 then
+    >ninja7 = Ninja.objects.create(first_name= "Ben", last_name= "Oyewo", dojo = dojo3)
+    >ninja8 = Ninja.objects.create(first_name= "Lola", last_name= "Winifred", dojo = dojo3)
+    >ninja9 = Ninja.objects.create(first_name= "Toyin", last_name= "Agoro", dojo = dojo3)
+
+Query: Retrieve all the ninjas from the first dojo. (referencing the Foreign key "ninjas" that links "Dojo" to "Ninja" (one to Many / one dojo many ninjas))
+    >dojo1.ninjas.all()
+
+Query: Retrieve all the ninjas from the last dojo.
+    >dojo3.ninjas.all()
+
+Query: Retrieve the last ninja's dojo.
+    >ninja9.dojo         (this gives the dojo id to which the ninja9 belongs to)
+    >ninja9.dojo.name        (this gives the actual name od the dojo id to which the ninja9 belongs to)
+
+Add a new text field called "desc" to your Dojo class.
+    >desc = models.TextField()  Adding "desc" and its attributes(e.g Textfield)as an added character for the Model Table (Class Dojo) in the "app.models.py file". (null = True) allows "desc" to be edited later from our shell
+    >exit()  (exiting the shell)
+    >python manage.py makemigrations  (remigrating to the database to reinforce the newly updated Class Dojo in the apps.models.py file)
+    >select "1" for a default value for all "desc" and the Class Dojo associated with it. OR select "2" for allowing the second remigration.
+    >go back to the app.model.py file and add null = True into the () i.e desc = models.TextField(null = True)
+    >python manage.py makemigrations (again then)
+    >python manage.py migrations
+    >python manage.py shell
+    >from app_name.models import *
+    >We can now assign values to "desc" for each of the dojo1, dojo2, dojo3 in the Class Dojo Model.
+
+Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo".
+    >dojoToUpdate = Dojo.objects.get(id=1) OR c = Dojo.objects.get(id=1)  then
+    >dojoToUpdate  then
+    >dojoToUpdate.desc = "old dojo" OR c.desc = "old dojo" then
+    >dojoToUpdate.save()
+    >dojoToUpdate = Dojo.objects.get(id=2) OR c = Dojo.objects.get(id=2)  then
+    >dojoToUpdate  then
+    >dojoToUpdate.desc = "old dojo" OR c.desc = "old dojo" then
+    >dojoToUpdate.save()
+    >dojoToUpdate = Dojo.objects.get(id=3) OR c = Dojo.objects.get(id=3)  then
+    >dojoToUpdate  then
+    >dojoToUpdate.desc = "old dojo" OR c.desc = "old dojo" then
+    >dojoToUpdate.save()
+
+Query: Create a new dojo.
+    >dojo4 = Dojo.objects.create(name= "Delta", city= "Evansville", state= "IN")

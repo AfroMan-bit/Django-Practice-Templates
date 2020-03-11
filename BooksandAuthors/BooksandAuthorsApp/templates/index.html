@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- the bootstrap type used below is ".jumbotron" -->
+        <div class="jumbotron">
+            <h1>Books And Authors With Templates</h1>
+        </div>
+        <!-- the grid system for bootstarp is called ".row" -->
+        <div class="row">
+            <!-- the grid assigned below is 6 out of 12 grids, hence ".col-sm-6" -->
+            <div class="col-sm-6">
+                <h3>Add a Book</h3>
+                <!-- for this type of form the method of request is "post" and the form also needs "required" in the input tag to give the form a front end validation and security -->
+                <form action="/books" method="post">
+                    <!-- add this autheticity token always -->
+                    {% csrf_token %}
+                    <!-- this is grouping forms according to the categories of the given in the same page ".form-group"-->
+                    <div class="form-group">
+                        <!--create a label tag of the form "<label>" -->
+                        <label>Title</label>
+                        <!-- create the input tag for "Title" (input:) -->
+                        <input type="text" name="title" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <!-- add a textarea for description and also add a placeholder or ignore -->
+                        <textarea name="desc" id="" cols="30" rows="10" placeholder="Please share comment" class="form-control" required></textarea>
+                    </div>
+                    <!-- add submit button outside the form group class and also add color (btn-danger for red, btn-success for green, btn-default for white, btn-primary for blue, btn-warning for yellow, btn-dark for black,btn-link for a link, btn-info for light blue) -->
+                    <input type="submit" value= "Add" class="btn btn-primary" required> 
+                </form>    
+            </div>
+            <div class="col-sm-6">
+                <!-- this is how bootstrap styles tables(class="table")-->
+                <!-- this gives the table a striped look by adding (table.striped) -->
+                <table class="table table.striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                    <!-- this is to start the for loop through the books to be passed into the table  -->
+                    {% for book in books %}
+                    <!-- to then add more table rows and table datas-->
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.title }}</td>
+                        <!-- (a:link) is the shortcut to create a link -->
+                        <!-- (book.id) is the function the View link will serve -->
+                        <td><a href="/bookInfo/{{ book.id }}">View</a></td>
+                    </tr>
+                    <!-- this is to end the for loop through the books to be passed into the table  -->
+                    {% endfor %}
+                </table>
+                <br><br>
+                <br><br>
+                <h6><a href="/author">Add Authors here</a></h6>
+            </div> 
+        </div>
+        <!-- this is for having a line break or space when rendering the html  -->
+        <!-- <br><br> -->
+    </div>
+</body>
+</html>

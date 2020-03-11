@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Books And Authors With Templates</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Add an Author</h3>
+                <form action="/author" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea name="notes" id="" cols="30" rows="10" placeholder="Please share comment" class="form-control" required></textarea>
+                    </div>
+                    <input type="submit" value= "Add" class="btn btn-success" required>
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <table class="table table.striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for author in authors %}
+                    <tr>
+                        <td>{{ author.id }}</td>
+                        <td>{{ author.first_name }} {{author.last_name}}</td>
+                        <td><a href="/authorInfo/{{ author.id }}">View</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br><br>
+                <br><br>
+                <h6><a href="/">Add Books here</a></h6>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

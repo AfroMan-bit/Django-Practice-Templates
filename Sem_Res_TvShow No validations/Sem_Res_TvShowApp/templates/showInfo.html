@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>TV Show {{ showing.id }}</h1>
+            <h6><a href="/shows">Go Back</a></h6>
+        </div>
+        <h4>Title: {{ showing.title }}</h4>
+        <h4>Network: {{ showing.network }}</h4>
+        <h4>Release Date: {{ showing.release_date }}</h4>
+        <h4>Description:</h4>
+        <textarea name="desc" id="" cols="30" rows="5" placeholder="{{ showing.desc }}" class="form-control"></textarea>
+        <br><br>
+        <h4>Last Updated: {{ showing.updated_at }}</h4>
+        <br><br>
+        <h4><a href="/shows/{{ showing.id }}/edit"> Edit</a> | <a href="shows/{{ showing.id }}/destroy"> Delete</a></h4>
+    </div>
+</body>
+</html>

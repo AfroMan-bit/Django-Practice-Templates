@@ -1,0 +1,122 @@
+Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby
+    >Book.objects.create(title= "C sharp", desc= "Programming language")
+    >book2 = Book.objects.create(title= "Java", desc= "Programming language")
+    >book3 = Book.objects.create(title= "Python", desc= "Programming language")
+    >book4 = Book.objects.create(title= "PHP", desc= "Programming language")
+    >book5 = Book.objects.create(title= "Ruby", desc= "Programming language")
+
+Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu
+    >Author.objects.create(first_name= "Jane", last_name= "Austen")
+    >author2 = Author.objects.create(first_name= "Emily", last_name= "Dickinson")
+    >author3 = Author.objects.create(first_name= "Fyodor", last_name= "Dostoevksy")
+    >author4 = Author.objects.create(first_name= "William", last_name= "Shakespeare")
+    >author5 = Author.objects.create(first_name= "Lau", last_name= "Tzu")
+
+Add a new text field in the authors table called 'notes'.
+    >exit()
+    >add "notes = models.TextField()" (in the manayTomany_App.models.py file)
+    >run python manage.py makemigrations
+    >select option 2
+    >add "notes = models.TextField(null = True)" (in the manayTomany_App.models.py file)
+    >run python manage.py makemigrations
+    >run python manage.py migrate
+    >run python manage.py shell
+    >from oneTomany_App.models import *
+    >update the "notes" field in the Class Author Model
+
+Create and run the migration files to update the table in your database.
+    >>add "notes = models.TextField(null = True)" (in the manayTomany_App.models.py file)
+    >run python manage.py makemigrations
+    >run python manage.py migrate
+    >run python manage.py shell
+    >from oneTomany_App.models import *
+    >update the "notes" field in the Class Author Model
+
+Query: Change the name of the C Sharp book to C#
+    >c = Book.objects.get(id=1) then
+    >c.title = "C#" then
+    >c.save()
+
+Query: Change the first name of the 4th author to Bill
+    >c = Author.objects.get(id=4) then
+    >c.first_name = "Bill" then
+    >c.save()
+
+Query: Assign the first author to the first 2 books
+    >book1 = Book.objects.get(id=1)
+    >author1 = Author.objects.get(id=1)
+    >author1.books.add(book1)
+    
+    >book2 = Book.objects.get(id=2)
+    >author1 = Author.objects.get(id=1)
+    >author1.books.add(book2)
+
+Query: Assign the second author to the first 3 books
+    >book1 = Book.objects.get(id=1)
+    >author2 = Author.objects.get(id=2)
+    >book1.authors.add(author2)
+
+    >book2 = Book.objects.get(id=2)
+    >author2 = Author.objects.get(id=2)
+    >book2.authors.add(author2)
+
+    >book3 = Book.objects.get(id=3)
+    >author2 = Author.objects.get(id=2) then
+    >author2.books.add(book3)   (this is different from book1 and book2 because they have a previous author (author1) unlike book3 which is just assigned author2)
+
+Query: Assign the third author to the first 4 books
+    >book1 = Book.objects.get(id=1)
+    >author3 = Author.objects.get(id=3)
+    >book1.authors.add(author3)
+
+    >book2 = Book.objects.get(id=2)
+    >author3 = Author.objects.get(id=3)
+    >book2.authors.add(author3)
+
+    >book3 = Book.objects.get(id=3)
+    >author3 = Author.objects.get(id=3)
+    >book3.authors.add(author3)
+
+    >book4 = Book.objects.get(id=4)
+    >author3 = Author.objects.get(id=3) then
+    >author3.books.add(book4)   (this is different from book1, book2 and book3 because they have previous authors (author1) and (author2) unlike book4 which is just assigned author3)
+
+Query: Assign the fourth author to the first 5 books (or in other words, all the books)
+    >book1 = Book.objects.get(id=1)
+    >author4 = Author.objects.get(id=4)
+    >book1.authors.add(author4)
+
+    >book2 = Book.objects.get(id=2)
+    >author4 = Author.objects.get(id=4)
+    >book2.authors.add(author4)
+
+    >book3 = Book.objects.get(id=3)
+    >author4 = Author.objects.get(id=4)
+    >book3.authors.add(author4)
+
+    >book4 = Book.objects.get(id=4)
+    >author4 = Author.objects.get(id=4)
+    >book4.authors.add(author4)
+
+    >book5 = Book.objects.get(id=5)
+    >author4 = Author.objects.get(id=4) then
+    >author4.books.add(book5)   (this is different from book1, book2, book3, and book4 because they have previous authors (author1), (author2) and (author3) unlike book5 which is just assigned author4)
+
+Query: Retrieve all the authors for the 3rd book
+    >book3.authors.all()
+
+Query: Remove the first author of the 3rd book
+    >author2 = Author.objects.get(id=2)   Remebering from above that book3 was not assigned to the first author (author1) but the second author (author2)   then
+    >book3 = Book.objects.get(id=3)
+    >author2.books.remove(book3)
+   
+Query: Add the 5th author as one of the authors of the 2nd book
+    >book2 = Book.objects.get(id=2)
+    >author5 = Author.objects.get(id=5)
+    >book2.authors.add(author5)
+
+Query: Find all the books that the 3rd author is part of
+    >author3.books.all()
+
+Query: Find all the authors that contributed to the 5th book
+    >book5.authors.all()
